@@ -14,8 +14,14 @@ var app = builder.Build();
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
-    app.UseSwaggerUI();
+    app.UseSwaggerUI(c =>
+{
+c.SwaggerEndpoint("/swagger/v1/swagger.json", "AdharCard API");
+// Set Swagger UI as the default endpoint
+c.RoutePrefix = string.Empty; // This makes swagger/index.html the default route
+});
 }
+
 
 app.UseHttpsRedirection();
 app.UseRouting();
